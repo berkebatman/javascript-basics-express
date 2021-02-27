@@ -12,6 +12,17 @@ describe('/strings', () => {
           done();
         });
     });
+
+    // eslint-disable-next-line no-shadow
+    it('returns "Hello, turtle!" when passed "turtle"', done => {
+      request(app)
+        .get('/strings/hello/turtle')
+        .then(res => {
+          expect(res.status).toEqual(200);
+          expect(res.body).toEqual({ result: 'Hello, turtle!' });
+          done();
+        });
+    });
   });
 
   describe('GET /upper/{string}', () => {
