@@ -10,7 +10,6 @@ const uppercase = string => {
 const lowercase = string => {
   const x = string.toLowerCase();
   return x;
-  console.log(x);
 };
 
 const countCharacters = string => {
