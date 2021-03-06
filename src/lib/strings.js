@@ -22,7 +22,7 @@ const firstCharacter = string => {
   return x;
 };
 
-const firstCharacters = (string, n = 1) => {
+const firstCharacters = (string, n) => {
   const x = string.substring(0, n);
   return x;
 };

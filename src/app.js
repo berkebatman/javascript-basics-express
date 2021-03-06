@@ -44,7 +44,11 @@ app.get('/strings/lower/:id', (req, res) => {
 });
 
 app.get('/strings/first-characters/:id', (req, res) => {
-  res.status(200).json({ result: firstCharacters(req.params.id, req.query.length) });
+  if (typeof req.query.length === 'undefined') {
+    res.status(200).json({ result: firstCharacters(req.params.id, 1) });
+  } else {
+    res.status(200).json({ result: firstCharacters(req.params.id, req.query.length) });
+  }
 });
 
 // numbers
@@ -108,6 +112,7 @@ app.post('/numbers/remainder', (req, res) => {
 });
 
 // booleans
+
 app.post('/booleans/negate', (req, res) => {
   res.status(200).json({ result: negate(req.body.value) });
 });
