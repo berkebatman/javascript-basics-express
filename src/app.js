@@ -1,11 +1,29 @@
 /* eslint-disable no-undef */
 const express = require('express');
 
-const { sayHello, uppercase, lowercase } = require('./lib/strings');
+const { sayHello, uppercase, lowercase, firstCharacters } = require('./lib/strings');
 
 const { add, subtract, multiply, divide, remainder } = require('./lib/numbers');
 
 const { negate, truthiness, isOdd, startsWith } = require('./lib/booleans');
+
+const {
+  getNthElement,
+  arrayToCSVString,
+  csvStringToArray,
+  addToArray,
+  addToArray2,
+  removeNthElement,
+  numbersToStrings,
+  uppercaseWordsInArray,
+  reverseWordsInArray,
+  onlyEven,
+  removeNthElement2,
+  elementsStartingWithAVowel,
+  removeSpaces,
+  sumNumbers,
+  sortByLastLetter,
+} = require('./lib/arrays');
 
 const app = express();
 
@@ -25,8 +43,8 @@ app.get('/strings/lower/:id', (req, res) => {
   res.status(200).json({ result: lowercase(req.params.id) });
 });
 
-app.get('/strings/first-characters/:id?:a', (req, res) => {
-  res.status(200).json({ result: req.params.id.substring(0, req.query.q) });
+app.get('/strings/first-characters/:id', (req, res) => {
+  res.status(200).json({ result: firstCharacters(req.params.id, req.query.length) });
 });
 
 // numbers
@@ -113,5 +131,33 @@ app.get('/booleans/:a/starts-with/:b', (req, res) => {
     res.status(400).json({ error: 'Parameter "character" must be a single character.' });
   }
 });
+
+// arrays
+
+app.post('/arrays/element-at-index/:a', (req, res) => {
+  res.status(200).json({ result: getNthElement(req.params.a, req.body.array) });
+});
+
+app.post('/arrays/to-string', (req, res) => {
+  res.status(200).json({ result: arrayToCSVString(req.body.array) });
+});
+
+app.post('/arrays/append', (req, res) => {
+  res.status(200).json({ result: addToArray2(req.body.value, req.body.array) });
+});
+
+app.post('/arrays/starts-with-vowel', (req, res) => {
+  res.status(200).json({ result: elementsStartingWithAVowel(req.body.array) });
+});
+
+app.post('/arrays/remove-element', (req, res) => {
+  if (typeof req.query.index === 'undefined') {
+    res.status(200).json({ result: removeNthElement(0, req.body.array) });
+  } else {
+    res.status(200).json({ result: removeNthElement(req.query.index, req.body.array) });
+  }
+});
+
+/// arrays/to-string
 
 module.exports = app;

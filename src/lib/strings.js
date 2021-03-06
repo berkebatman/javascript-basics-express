@@ -15,19 +15,16 @@ const lowercase = string => {
 const countCharacters = string => {
   const x = string.length;
   return x;
-  console.log(x);
 };
 
 const firstCharacter = string => {
   const x = string.charAt(0);
   return x;
-  console.log(x);
 };
 
-const firstCharacters = (string, n) => {
+const firstCharacters = (string, n = 1) => {
   const x = string.substring(0, n);
   return x;
-  console.log(x);
 };
 
 module.exports = {
