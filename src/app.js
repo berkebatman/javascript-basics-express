@@ -10,19 +10,9 @@ const { negate, truthiness, isOdd, startsWith } = require('./lib/booleans');
 const {
   getNthElement,
   arrayToCSVString,
-  csvStringToArray,
-  addToArray,
   addToArray2,
   removeNthElement,
-  numbersToStrings,
-  uppercaseWordsInArray,
-  reverseWordsInArray,
-  onlyEven,
-  removeNthElement2,
   elementsStartingWithAVowel,
-  removeSpaces,
-  sumNumbers,
-  sortByLastLetter,
 } = require('./lib/arrays');
 
 const app = express();
